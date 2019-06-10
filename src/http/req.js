@@ -3,10 +3,8 @@ import axios from 'axios';
 import { Loading,Toast} from "vant";
 Vue.use(Loading);
 //请求头加上token信息
-console.log( localStorage.getItem('token'));
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || "222";
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || "";
 
-console.log(axios.defaults.headers)
 
 // 请求拦截器
 // axios.interceptors.request.use(    
