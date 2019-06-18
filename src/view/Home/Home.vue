@@ -1,12 +1,19 @@
 <template>
-    <div id="home">
-      <section class="contain" >
-        <transition :name="transitionName">
-          <router-view ></router-view>
-        </transition>
-      </section>
-      <footer>
-        <div class="bottom">
+  <div id="home">
+    <section class="contain">
+      <transition :name="transitionName">
+        <router-view></router-view>
+      </transition>
+    </section>
+
+    <van-tabbar route v-model="active">
+      <van-tabbar-item replace to="/home/index"  icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item replace to="/home/news" info="2" icon="chat-o">聊天</van-tabbar-item>
+      <van-tabbar-item replace to="/home/faq" icon="search">家信</van-tabbar-item>
+      <van-tabbar-item replace to="/home/pro" dot icon="edit">我的</van-tabbar-item>
+    </van-tabbar>
+    <footer>
+      <!-- <div class="bottom">
             <ul class="navbar">
               <li :class="{act:$route.meta.index == 1}">
                 <router-link to="/home/index">
@@ -33,49 +40,48 @@
                 </router-link>
               </li>
             </ul>
-        </div>
-      </footer>
-    </div>
+      </div>-->
+    </footer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  data () {
+  name: "Home",
+  data() {
     return {
-      transitionName: '',
+      transitionName: "",
       active: 1
-    }
+    };
   },
-  methods: {
-
-  },
-  watch: {// 使用watch 监听$router的变化
-    $route (to, from) {
+  methods: {},
+  watch: {
+    // 使用watch 监听$router的变化
+    $route(to, from) {
       // 如果to索引大于from索引,判断为前进状态,反之则为后退状态
       if (to.meta.index > from.meta.index) {
         // 设置动画名称
-        this.transitionName = 'slide-left'
+        this.transitionName = "slide-left";
       } else {
-        this.transitionName = 'slide-right'
+        this.transitionName = "slide-right";
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
-  #home{
-    margin:0 auto;
-    overflow-x: hidden;
-  }
-  .contain{
-      background: #eeeeee;
-      width: 100%;
-      height: 60rem;
-      overflow: hidden;
-  }
-.bottom{
+#home {
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+.contain {
+  background: #eeeeee;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.bottom {
   display: block;
   position: fixed;
   bottom: 0;
@@ -87,62 +93,61 @@ export default {
   background: #fff;
   overflow: hidden;
 }
-  .navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items:stretch;
-  }
-  .navbar li{
-    flex-grow: 1;
-    height: 1.5rem;
-    align-self:center;
-
-  }
-.navbar li a{
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.navbar li {
+  flex-grow: 1;
+  height: 1.5rem;
+  align-self: center;
+}
+.navbar li a {
   width: 100%;
   display: block;
   text-align: center;
 }
-.navbar li a .icon{
+.navbar li a .icon {
   display: block;
-  width: .48rem;
-  height: .48rem;
-  margin:.21rem auto;
+  width: 0.48rem;
+  height: 0.48rem;
+  margin: 0.21rem auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.icon-home{
+.icon-home {
   background: url(./../../../static/images/home.png);
 }
-.act .icon-home{
+.act .icon-home {
   background: url(./../../../static/images/home_act.png);
 }
-.icon-faq{
+.icon-faq {
   background: url(./../../../static/images/faq.png);
 }
-.act .icon-faq{
+.act .icon-faq {
   background: url(./../../../static/images/faq_act.png);
 }
-.icon-news{
+.icon-news {
   background: url(./../../../static/images/news.png);
 }
-.act .icon-news{
+.act .icon-news {
   background: url(./../../../static/images/news_act.png);
 }
-.icon-pro{
+.icon-pro {
   background: url(./../../../static/images/pro.png);
 }
-.act .icon-pro{
+.act .icon-pro {
   background: url(./../../../static/images/pro_act.png);
 }
-.navbar li a p{
+.navbar li a p {
   width: 100%;
-  height: .6rem;
-  font-size: .2rem;
+  height: 0.6rem;
+  font-size: 0.2rem;
   text-align: center;
 }
-.act a p{
-  color: #D1141B;
+.act a p {
+  color: #d1141b;
 }
 </style>

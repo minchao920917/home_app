@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import axios from 'axios';
 import router from './router'
-import 'vant/lib/index.css';
-// import slider from 'vue-concise-slider'
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 import {
   reqPos,
   reqGet,
