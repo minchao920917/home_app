@@ -2,9 +2,11 @@
   <div id="pro">
     <div class="container">
       <h3 class="title">常用功能</h3>
-      <van-cell title="发布通知" is-link to="index"/>
-      <van-cell title="今日记账" is-link to="index"/>
+      <van-cell title="添加成员" is-link to=""/>
+      <van-cell title="发布通知" is-link to=""/>
+      <van-cell title="今日记账" is-link to=""/>
       <h3 class="title">附加功能</h3>
+      <van-cell title="名片夹管理" is-link/>
       <van-cell title="地址管理" is-link/>
       <van-cell title="亲戚计算器" is-link/>
     </div>

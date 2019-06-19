@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/view/regist/Index'
-import login from '@/view/regist/Login'
-import regist from '@/view/regist/Regist'
-import modify from '@/view/regist/Modify'
-import setpass from '@/view/regist/Setpass'
-import agree from '@/view/regist/Agree'
-import home from '@/view/home/Home'
-import homeIndex from '@/view/home/Index'
-import faq from '@/view/home/Faq'
-import news from '@/view/home/News'
-import pro from '@/view/home/Pro'
+import index from '@/view/Regist/Index'
+import login from '@/view/Regist/Login'
+import regist from '@/view/Regist/Regist'
+import modify from '@/view/Regist/Modify'
+import setpass from '@/view/Regist/Setpass'
+import agree from '@/view/Regist/Agree'
+import home from '@/view/Home'
+import homeIndex from '@/view/Home/Index'
+import letterIndex from '@/view/Letter/Index'
+import newsIndex from '@/view/News/Index'
+import selfIndex from '@/view/self/Index'
 
 Vue.use(Router)
 
@@ -58,26 +58,47 @@ export default new Router({
             index: 1,
             keepAlive: true
           }
-        },
+        }
+      ]
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: newsIndex,
+      children: [
         {
-          path: '/home/news',
-          component: news,
+          path: '/news/index',
+          component: newsIndex,
           meta: {
             index: 2,
             keepAlive: true
           }
-        },
+        }
+      ]
+    },
+    {
+      path: '/letter',
+      name: 'letter',
+      component: letterIndex,
+      children: [
         {
-          path: '/home/faq',
-          component: faq,
+          path: '/letter/index',
+          component: letterIndex,
           meta: {
             index: 3,
             keepAlive: true
           }
-        },
+        }
+      ]
+    },
+    {
+      path: '/self',
+      name: 'self',
+      component: selfIndex,
+      children: [
         {
-          path: '/home/pro',
-          component: pro,
+          path: '/self/index',
+          component: selfIndex,
           meta: {
             index: 4,
             keepAlive: true
@@ -87,3 +108,29 @@ export default new Router({
     }
   ]
 })
+
+
+// {
+//   path: '/home/news',
+//   component: news,
+//   meta: {
+//     index: 2,
+//     keepAlive: true
+//   }
+// },
+// {
+//   path: '/home/faq',
+//   component: faq,
+//   meta: {
+//     index: 3,
+//     keepAlive: true
+//   }
+// },
+// {
+//   path: '/self/pro',
+//   component: pro,
+//   meta: {
+//     index: 4,
+//     keepAlive: true
+//   }
+// }
