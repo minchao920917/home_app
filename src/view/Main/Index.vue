@@ -5,14 +5,12 @@
         <router-view></router-view>
       </transition>
     </section>
-
     <van-tabbar route v-model="active">
-      <van-tabbar-item replace to="/home/index"  icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item replace to="/news/index" info="2" icon="chat-o">聊天</van-tabbar-item>
-      <van-tabbar-item replace to="/letter/index" icon="search">家信</van-tabbar-item>
-      <van-tabbar-item replace to="/self/index" dot icon="edit">我的</van-tabbar-item>
+      <van-tabbar-item replace to="/main/index" icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item replace to="/main/news" info="2" icon="chat-o">聊天</van-tabbar-item>
+      <van-tabbar-item replace to="/main/letter" icon="search">提问</van-tabbar-item>
+      <van-tabbar-item replace to="/main/self" dot icon="edit">我的</van-tabbar-item>
     </van-tabbar>
-
   </div>
 </template>
 
@@ -22,7 +20,7 @@ export default {
   data() {
     return {
       transitionName: "",
-      active: 1
+      active: 0
     };
   },
   methods: {},

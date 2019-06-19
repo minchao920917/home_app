@@ -64,7 +64,7 @@ export default {
             message:res.msg,
             onClose:()=>{
               this.$router.push({
-                path:"/home/index"
+                path:"/main/index"
             })
             }
           });

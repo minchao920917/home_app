@@ -6,7 +6,7 @@ import regist from '@/view/Regist/Regist'
 import modify from '@/view/Regist/Modify'
 import setpass from '@/view/Regist/Setpass'
 import agree from '@/view/Regist/Agree'
-import home from '@/view/Home'
+import main from '@/view/Main/Index'
 import homeIndex from '@/view/Home/Index'
 import letterIndex from '@/view/Letter/Index'
 import newsIndex from '@/view/News/Index'
@@ -47,57 +47,36 @@ export default new Router({
       component: agree
     },
     {
-      path: '/home',
-      name: 'home',
-      component: home,
+      path: '/main',
+      name: 'main',
+      component: main,
       children: [
         {
-          path: '/home/index',
+          path: '/main/index',
           component: homeIndex,
           meta: {
             index: 1,
             keepAlive: true
           }
-        }
-      ]
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: newsIndex,
-      children: [
+        },
         {
-          path: '/news/index',
+          path: '/main/news',
           component: newsIndex,
           meta: {
             index: 2,
             keepAlive: true
           }
-        }
-      ]
-    },
-    {
-      path: '/letter',
-      name: 'letter',
-      component: letterIndex,
-      children: [
+        },
         {
-          path: '/letter/index',
+          path: '/main/letter',
           component: letterIndex,
           meta: {
             index: 3,
             keepAlive: true
           }
-        }
-      ]
-    },
-    {
-      path: '/self',
-      name: 'self',
-      component: selfIndex,
-      children: [
+        },
         {
-          path: '/self/index',
+          path: '/main/self',
           component: selfIndex,
           meta: {
             index: 4,
@@ -106,6 +85,7 @@ export default new Router({
         }
       ]
     }
+    
   ]
 })
 
