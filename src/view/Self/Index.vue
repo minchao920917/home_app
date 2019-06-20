@@ -34,11 +34,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 .container {
   background: #fff;
   /*height: 5.90rem;*/
-  height: 85vh;
+
   text-align: left;
+  .title{
+    margin-top: 0;
+    padding: .2rem .3rem;
+    background: #eee;
+  }
+  .van-cell{
+    padding: .2rem .2rem .2rem .6rem;
+  }
 }
 </style>
 
