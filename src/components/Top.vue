@@ -5,7 +5,6 @@
       <span class="back" @click="go" v-show="isShowReturnIcon">
         <van-icon name="arrow-left"/>
       </span>
-
     </div>
   </header>
 </template>
@@ -30,12 +29,15 @@ export default {
     isShowReturnIcon: state => state.top.isShowReturnIcon
   }),
   created() {
-     
+     console.log(this.$router);
   },
-  mounted() {},
+  mounted() {
+
+  },
   methods: {
     go() {
-      history.go(-1);
+      this.$router.go(-1)
+      
     },
     generate() {
       bus.$emit("generate");
@@ -51,18 +53,18 @@ export default {
 
 .header {
   text-align: center;
-  font-size: 0.17rem;
-  height: 0.44rem;
+  font-size: 0.18rem;
+  height: 0.8rem;
   h5 {
     color: #030303;
     font-weight: 500;
   }
   .header-content {
-    height: 0.44rem;
+    height: 0.8rem;
     position: fixed;
     top: 0px;
     left: 0px;
-    line-height: 0.44rem;
+    line-height: 0.8rem;
     background: #ffffff;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.55);
     width: 100%;
@@ -70,40 +72,18 @@ export default {
     // position:relative;
     .back {
       position: absolute;
-      width: 0.3rem;
-      top: 0.02rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      top: 0;
+      left: 0;
+      
       display: block;
-    }
-    .save {
-      position: absolute;
-      font-weight: 500;
-      right: 0.15rem;
-      top: 0rem;
-      font-size: 0.14rem;
-      color: #8d8d8d;
-      letter-spacing: 0;
-      color: #ff6f53;
-    }
-    .cancel {
-      position: absolute;
-      right: 0.15rem;
-      top: 0.01rem;
-      font-size: 0.14rem;
-      color: #8d8d8d;
-      letter-spacing: 0;
-    }
-    .tos {
-      position: absolute;
-      right: 0.15rem;
-      top: 0.01rem;
-      font-size: 0.14rem;
-      color: #8d8d8d;
-      letter-spacing: 0;
-      .icon {
-        font-size: 0.16rem;
-        transform: translate(20%, 20%);
+      i{
+        font-size: .3rem;
+        line-height: 0.8rem;
       }
     }
+ 
   }
 }
 </style>
