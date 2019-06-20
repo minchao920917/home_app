@@ -37,7 +37,9 @@
 <script>
 import Url from "../../utils/url";
 import req from "../../http/req";
-
+import { createStore } from "../../store";
+import { mapState } from "vuex";
+const store = createStore();
 export default {
   name: "Index",
   data() {
@@ -49,6 +51,11 @@ export default {
       loading: false,
       finished: false
     };
+  },
+  created(){
+    store.state.top.title = "首页";
+    store.state.top.isShowTop = false;
+    store.state.top.isShowReturnIcon = true;
   },
   components: {},
   mounted() {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        成员管理
+        记账管理
     </div>
 </template>
 

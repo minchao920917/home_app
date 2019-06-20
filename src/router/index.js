@@ -11,6 +11,10 @@ import homeIndex from '@/view/Home/Index'
 import letterIndex from '@/view/Letter/Index'
 import newsIndex from '@/view/News/Index'
 import selfIndex from '@/view/self/Index'
+import member from '@/view/self/member'
+import memberEdit from '@/view/self/memberEdit'
+import notice from '@/view/self/notice'
+import noticeAdd from '@/view/self/noticeAdd'
 
 Vue.use(Router)
 
@@ -82,9 +86,41 @@ export default new Router({
             index: 4,
             keepAlive: true
           }
-        }
+        },
+        {
+          path: '/main/member',
+          component: member,
+          meta: {
+            index: 5,
+            keepAlive: true
+          }
+        },
+        {
+          path: '/main/memberEdit',
+          component: memberEdit,
+          meta: {
+            index: 5,
+            keepAlive: true
+          }
+        },
+        {
+          path: '/main/notice',
+          component: notice,
+          meta: {
+            index: 5,
+            keepAlive: true
+          }
+        },
+        {
+          path: '/main/noticeAdd',
+          component: noticeAdd,
+          meta: {
+            index: 5,
+            keepAlive: true
+          }
+        },
       ]
-    }
+    },
     
   ]
 })

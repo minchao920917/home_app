@@ -1,6 +1,6 @@
 <template>
     <div>
-        成员管理
+        发布通知
     </div>
 </template>
 

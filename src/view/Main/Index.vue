@@ -1,5 +1,7 @@
 <template>
   <div id="home">
+    <!--头部-->
+    <top-component></top-component>
     <section class="contain">
       <transition :name="transitionName">
         <router-view></router-view>
@@ -15,6 +17,10 @@
 </template>
 
 <script>
+import { createStore } from '../../store';
+import TopComponent from "../../components/Top";
+import { mapState } from 'vuex';
+const store = createStore();
 export default {
   name: "Home",
   data() {
@@ -22,6 +28,14 @@ export default {
       transitionName: "",
       active: 0
     };
+  },
+  computed: mapState({
+  }),
+  created() {
+    
+  },
+  components:{
+    TopComponent
   },
   methods: {},
   watch: {
@@ -50,5 +64,4 @@ export default {
   height: 100vh;
   overflow: hidden;
 }
-
 </style>

@@ -7,7 +7,7 @@ import router from './router'
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
+import { createStore } from './store'
 Vue.use(Vant);
 import {
   reqPos,
@@ -19,11 +19,12 @@ Vue.prototype.reqPos = reqPos;
 Vue.prototype.reqGet = reqGet;
 Vue.prototype.reqPosFor = reqPosFor;
 Vue.prototype.axios = axios
-
+const store = createStore()
 Vue.config.productionTip = false// 引入slider组件
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: {App},
   template: '<App/>'
