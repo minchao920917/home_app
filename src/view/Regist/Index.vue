@@ -7,7 +7,7 @@
         <router-link class="btn btn-reg" to="/login">登陆/注册</router-link>
       </li>
       <li>
-        <router-link class="btn btn-feel" to="/home/index">立即体验</router-link>
+        <router-link class="btn btn-feel" to="/main/index">立即体验</router-link>
       </li>
     </ul>
   </div>
