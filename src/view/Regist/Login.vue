@@ -7,16 +7,16 @@
     <div class="form">
       <div class="form-group">
         <i class="i i-phone"></i>
-        <input type="text" name="phone" v-model="name" placeholder="请输入手机号码">
+        <input type="text" name="phone" v-model="name" placeholder="请输入手机号码" />
       </div>
       <div class="form-group two">
         <i class="i i-lock"></i>
-        <input type="password" name="password" v-model="password" placeholder="请输入密码">
+        <input type="password" name="password" v-model="password" placeholder="请输入密码" />
       </div>
 
-        <router-link class="modify" to="/modify">
-            <span class="bran">?</span>忘记密码
-        </router-link>
+      <router-link class="modify" to="/modify">
+        <span class="bran">?</span>忘记密码
+      </router-link>
     </div>
     <!-- <van-loading type="spinner" color="#1989fa" size="24px" vertical /> -->
     <ul class="nav">
@@ -33,72 +33,100 @@
 
 <script>
 import Vue from "vue";
-import Url from '../../utils/url';
-import req from '../../http/req';
-import { Loading,Toast} from "vant";
+import Url from "../../utils/url";
+import req from "../../http/req";
+import { Loading, Toast } from "vant";
 Vue.use(Loading);
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
-      name:"",
-      password:"",
-      msg: '登陆'
-    }
+      name: "",
+      password: "",
+      msg: "登陆"
+    };
   },
   methods: {
-    goBack () {
-      this.$router.go(-1)
+    getOS() {
+      var userAgent =
+        ("navigator" in window &&
+          "userAgent" in navigator &&
+          navigator.userAgent.toLowerCase()) ||
+        "";
+      var vendor =
+        ("navigator" in window &&
+          "vendor" in navigator &&
+          navigator.vendor.toLowerCase()) ||
+        "";
+      var appVersion =
+        ("navigator" in window &&
+          "appVersion" in navigator &&
+          navigator.appVersion.toLowerCase()) ||
+        "";
+      if (/mac/i.test(appVersion)) return "MacOSX";
+      if (/win/i.test(appVersion)) return "windows";
+      if (/linux/i.test(appVersion)) return "linux";
+      if (
+        /iphone/i.test(userAgent) ||
+        /ipad/i.test(userAgent) ||
+        /ipod/i.test(userAgent)
+      )
+       return "ios";
+      if (/android/i.test(userAgent)) return "android";
+      if (/win/i.test(appVersion) && /phone/i.test(userAgent))
+        return "windowsPhone";
     },
-    login(){
-
+    goBack() {
+      this.$router.go(-1);
+    },
+    login() {
       this.reqPos(Url.login, {
-        phone:this.name,
-        password:this.password
+        phone: this.name,
+        password: this.password,
+        equipment:this.getOS()
       }).then(res => {
         console.log(res);
         if (res.status === "1") {
-          localStorage.setItem('token',res.data.token);
+          localStorage.setItem("token", res.data.token);
           Toast({
-            duration:1500,
-            message:res.msg,
-            onClose:()=>{
+            duration: 1500,
+            message: res.msg,
+            onClose: () => {
               this.$router.push({
-                path:"/main/index"
-            })
+                path: "/main/index"
+              });
             }
           });
-
         } else {
           Toast({
-            duration:2000,
-            message:res.msg,
+            duration: 2000,
+            message: res.msg
           });
         }
       });
     }
   }
-}
+};
 </script>
 
 <style scoped>
-  .btn-reg {
-    margin-top: 2.39rem;
-  }
-  .modify{
-    font-size: .24rem;
-    color: #D1141B;
-    letter-spacing: 0;
-    float: right;
-    margin-top: .32rem;
-  }
-  .modify span{
-    width: .24rem;
-    height: .24rem;
-    color:#fff;
-    background-color: #D1141B;
-    border-radius: 50%;
-    padding: 0.02rem .1rem;
-    margin-right: .11rem;
-  }
+.btn-reg {
+  margin-top: 2.39rem;
+}
+.modify {
+  font-size: 0.24rem;
+  color: #d1141b;
+  letter-spacing: 0;
+  float: right;
+  margin-top: 0.32rem;
+}
+.modify span {
+  width: 0.24rem;
+  height: 0.24rem;
+  color: #fff;
+  background-color: #d1141b;
+  border-radius: 50%;
+  padding: 0.02rem 0.1rem;
+  margin-right: 0.11rem;
+}
 </style>
