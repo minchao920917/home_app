@@ -7,12 +7,12 @@ if (process.env.NODE_ENV === "development") {
   } else {
     DomainName = ''
   }
-
+  DomainAll = DomainName+"/api"
 export default {
     
-    login:DomainName + "/users/login",//登录接口
+    login:DomainAll + "/login",//登录接口
 
-    searchList:DomainName + "/search/list",//获取列表
+    searchList:DomainAll + "/list",//获取列表
 
     
 

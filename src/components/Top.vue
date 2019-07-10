@@ -29,7 +29,7 @@ export default {
     isShowReturnIcon: state => state.top.isShowReturnIcon
   }),
   created() {
-     console.log(this.$router);
+     
   },
   mounted() {
 
