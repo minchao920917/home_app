@@ -1,7 +1,6 @@
 <template>
     <div id="faq">
-      <p>家信</p>
-     
+      <p>提问</p>
     </div>
 </template>
 

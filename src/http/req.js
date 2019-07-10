@@ -21,7 +21,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') |
 
 // 响应拦截器
 axios.interceptors.response.use(
-  response => {     // 服务器状态码是200的情况     
+  response => {     // 服务器状态码是200的情况  
     if (response.status === 200) {
       return Promise.resolve(response);
     } else {
@@ -30,7 +30,7 @@ axios.interceptors.response.use(
   },
   // 服务器状态码不是200的情况    
   error => {
-   
+    console.log(error);
     if (error.response.status) {
       switch (error.response.status) {
         // 401: 账号验证                

@@ -58,66 +58,34 @@ export default new Router({
         {
           path: '/main/index',
           component: homeIndex,
-          meta: {
-            index: 1,
-            keepAlive: true
-          }
         },
         {
           path: '/main/news',
           component: newsIndex,
-          meta: {
-            index: 2,
-            keepAlive: true
-          }
         },
         {
           path: '/main/letter',
           component: letterIndex,
-          meta: {
-            index: 3,
-            keepAlive: true
-          }
         },
         {
           path: '/main/self',
           component: selfIndex,
-          meta: {
-            index: 4,
-            keepAlive: true
-          }
         },
         {
-          path: '/main/member',
+          path: '/self/member',
           component: member,
-          meta: {
-            index: 5,
-            keepAlive: true
-          }
         },
         {
-          path: '/main/memberEdit',
+          path: '/self/memberEdit',
           component: memberEdit,
-          meta: {
-            index: 5,
-            keepAlive: true
-          }
         },
         {
-          path: '/main/notice',
+          path: '/self/notice',
           component: notice,
-          meta: {
-            index: 5,
-            keepAlive: true
-          }
         },
         {
-          path: '/main/noticeAdd',
+          path: '/self/noticeAdd',
           component: noticeAdd,
-          meta: {
-            index: 5,
-            keepAlive: true
-          }
         },
       ]
     },
