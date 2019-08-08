@@ -1,12 +1,45 @@
 /**
  * @ Author: minchao
- * @ Create Time: 2019-07-12 17:52:25
+ * @ Create Time: 2017-07-12 17:52:25
  * @ Modified by: minchao
- * @ Modified time: 2019-07-12 18:55:16
+ * @ Modified time: 2019-08-09 09:39:59
  * @ Description: homeapp通用LESS代码组件
  */
+// 主颜色设置
+@homeColor: #09aeaf;
+@whiteColor: #fff;
 
- @homeColor:#09aeaf;
- @whiteColor:#fff;
+//字体颜色
+@baseFontColor: #333;
+@fontSmallColor: #999;
 
+//文字尺寸
+.fontSize(@value: .14rem) {
+  font-size: @value;
+}
+//padding 统一设置上下、左右
+.pd(@topAndBottom:.14rem,@leftAndRight:.14rem){
+    padding: @topAndBottom @leftAndRight;
+}
+.padd(@top:.14rem, @bottom:.14rem,@left:.14rem,@right:.14rem){
+    padding: @top @right @bottom @right;
+}
+//margin 统一设置
+.mg(@topAndBottom:.14rem,@leftAndRight:.14rem){
+    margin: @topAndBottom @leftAndRight;
+}
+.marg(@top:.14rem, @bottom:.14rem,@left:.14rem,@right:.14rem){
+    margin: @top @right @bottom @right;
+}
 
+//字体
+@font-face {
+  font-family: 'PingFangSC-Regular';
+  src: url('font/PingFangSC-Regular.ttf'); //PingFangSC-Regular
+  font-weight: 500;
+  font-style: normal;
+}
+
+.boxShadow(){
+  box-shadow: -2px 2px 6px 0 rgba(217,217,217,0.48);
+}
