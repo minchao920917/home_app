@@ -18,7 +18,7 @@
 
 <script>
 import { createStore } from '../../store';
-import TopComponent from "../../components/Header";
+import TopComponent from "../../components/common/Header";
 import { mapState } from 'vuex';
 const store = createStore();
 export default {
