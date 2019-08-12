@@ -11,7 +11,7 @@
         <van-button slot="button" size="small" type="primary">发送验证码</van-button>
       </van-field>-->
     </van-cell-group>
-
+    <router-link class="aggree" to="/aggree">《阅读条款》</router-link>
     <ul class="nav">
       <li @click="regist">
         <button-component
@@ -31,7 +31,7 @@
 import Vue from "vue";
 import Url from "../../utils/url";
 import req from "../../http/req";
-import md5 from "js-md5"
+import md5 from "js-md5";
 import { Loading, Toast, Field } from "vant";
 Vue.use(Loading);
 Vue.use(Toast);
@@ -143,6 +143,11 @@ export default {
     li {
       .mg(0.4rem);
     }
+  }
+  .aggree {
+    display: block;
+    .marg(.1rem);
+    text-align: right;
   }
 }
 </style>

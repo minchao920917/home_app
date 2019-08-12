@@ -2,13 +2,13 @@
  * @ Author: minchao
  * @ Create Time: 2019-05-24 11:30:48
  * @ Modified by: minchao
- * @ Modified time: 2019-08-12 11:04:46
+ * @ Modified time: 2019-08-22 18:00:41
  * @ Description: 头部组件 header
  -->
 
 <template>
   <header class="header">
-    <div class="header-content" v-if="isShow">
+    <div class="header-content" >
       <p>{{title}}</p>
       <span class="back" @click="go" v-show="isShowReturnIcon">
         <van-icon name="arrow-left" />
@@ -35,7 +35,7 @@ export default {
   props: {
     isShow: {
       type: Boolean,
-      default: false
+      default: true
     },
     isShowReturnIcon: {
       type: Boolean,

@@ -2,7 +2,7 @@
  * @ Author: minchao
  * @ Create Time: 2019-06-10 16:51:47
  * @ Modified by: minchao
- * @ Modified time: 2019-08-12 15:29:02
+ * @ Modified time: 2019-08-22 16:53:32
  * @ Description: 登录页面
  -->
 <template>
@@ -131,6 +131,12 @@ export default {
           loadingToast.clear();
           if (res.status === "1") {
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("home_id", res.data.home_id);
+            localStorage.setItem("accountId", res.data.id);
+            localStorage.setItem("nick_name", res.data.nick_name);
+            localStorage.setItem("head_url", res.data.head_url);
+            localStorage.setItem("phone", res.data.phone);
+            localStorage.setItem("remarks", res.data.remarks);
             Toast({
               duration: 1500,
               message: res.msg,
@@ -142,7 +148,7 @@ export default {
             });
           } else {
             Toast({
-              duration: 2000,
+              duration: 1000,
               message: res.msg
             });
           }
