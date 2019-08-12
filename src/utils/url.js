@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === "development") {
 export default {
     
     login:DomainAll + "/login",//登录接口
+    regist:DomainAll + "/regist",//注册接口
 
 
     

@@ -17,8 +17,6 @@ export default {
 
     $route(to, from) {
       document.title = to.meta.title;
-      console.log(to);
-      console.log(from);
       //如果to索引大于from索引,判断为前进状态,反之则为后退状态
       if (to.meta.index > from.meta.index) {
         //设置动画名称

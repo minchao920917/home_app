@@ -1,31 +1,44 @@
+<!--
+ * @ Author: minchao
+ * @ Create Time: 2019-06-10 16:51:47
+ * @ Modified by: minchao
+ * @ Modified time: 2019-08-12 15:29:02
+ * @ Description: 登录页面
+ -->
 <template>
   <div id="login">
-    <div class="header">
-      <i class="icon icon-back" v-on:click="goBack"></i>
-    </div>
-    <p class="title">{{msg}}</p>
-    <div class="form">
-      <div class="form-group">
-        <i class="i i-phone"></i>
-        <input type="text" name="phone" v-model="name" placeholder="请输入手机号码" />
-      </div>
-      <div class="form-group two">
-        <i class="i i-lock"></i>
-        <input type="password" name="password" v-model="password" placeholder="请输入密码" />
-      </div>
+    <top :isShow="true" :title="'登录'"></top>
 
-      <router-link class="modify" to="/modify">
-        <span class="bran">?</span>忘记密码
-      </router-link>
-    </div>
-    <!-- <van-loading type="spinner" color="#1989fa" size="24px" vertical /> -->
+    <van-cell-group>
+      <van-field v-model="name" clearable label="用户名" placeholder="请输入手机号" />
+      <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" />
+    </van-cell-group>
+
+    <!-- <router-link class="modify" to="/modify">
+      <span class="bran">?</span>忘记密码
+    </router-link>   -->
+
     <ul class="nav">
-      <li>
-        <!-- <router-link class="btn btn-reg" to="/login">登 录</router-link> -->
-        <a href="javascript:void(0)" class="btn btn-reg" @click="login">登 录</a>
+      <li @click="login">
+        <button-component
+          class="index-btn"
+          :isactivited="true"
+          :width="'5rem'"
+          :height="'.8rem'"
+          :lineHeight="'.8rem'"
+          :btntext="'登 录'"
+        ></button-component>
       </li>
       <li>
-        <router-link class="btn btn-feel" to="/regist">没有账号 点击注册</router-link>
+        <router-link class="btn btn-feel" to="/regist">
+          <button-component
+            class="index-btn"
+            :width="'5rem'"
+            :height="'.8rem'"
+            :lineHeight="'.8rem'"
+            :btntext="'还未注册 点击注册'"
+          ></button-component>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -35,8 +48,14 @@
 import Vue from "vue";
 import Url from "../../utils/url";
 import req from "../../http/req";
-import { Loading, Toast } from "vant";
+import { Loading, Toast, Field } from "vant";
 Vue.use(Loading);
+Vue.use(Toast);
+Vue.use(Field);
+import md5 from 'js-md5';
+import top from "../../components/common/Header";
+import inputField from "../../components/common/InputField";
+import buttonComponent from "../../components/common/Button";
 export default {
   name: "Login",
   data() {
@@ -45,6 +64,11 @@ export default {
       password: "",
       msg: "登陆"
     };
+  },
+  components: {
+    top,
+    inputField,
+    buttonComponent
   },
   methods: {
     getOS() {
@@ -71,62 +95,95 @@ export default {
         /ipad/i.test(userAgent) ||
         /ipod/i.test(userAgent)
       )
-       return "ios";
+        return "ios";
       if (/android/i.test(userAgent)) return "android";
       if (/win/i.test(appVersion) && /phone/i.test(userAgent))
         return "windowsPhone";
     },
-    goBack() {
-      this.$router.go(-1);
+    checkedAll() {
+      if (this.name == "") {
+        Toast("手机号码不能为空");
+        return false;
+      }
+      if (this.password == "") {
+        Toast("密码不能为空");
+        return false;
+      }
+      if (!/^1(3\d|4\d|5\d|6\d|7\d|8\d|9\d)\d{8}$/g.test(this.name)) {
+        Toast("请填写正确的手机号码");
+        return false;
+      }
+      return true;
     },
     login() {
-      this.reqPos(Url.login, {
-        phone: this.name,
-        password: this.password,
-        equipment:this.getOS()
-      }).then(res => {
-        console.log(res);
-        if (res.status === "1") {
-          localStorage.setItem("token", res.data.token);
-          Toast({
-            duration: 1500,
-            message: res.msg,
-            onClose: () => {
-              this.$router.push({
-                path: "/main/index"
-              });
-            }
-          });
-        } else {
-          Toast({
-            duration: 2000,
-            message: res.msg
-          });
-        }
-      });
+      if (this.checkedAll()) {
+        const loadingToast = Toast.loading({
+          duration: 0,
+          mask: true,
+          message: "提交中..."
+        });
+        this.reqPos(Url.login, {
+          phone: this.name,
+          password: md5(this.password),
+          equipment: this.getOS()
+        }).then(res => {
+          console.log(res);
+          loadingToast.clear();
+          if (res.status === "1") {
+            localStorage.setItem("token", res.data.token);
+            Toast({
+              duration: 1500,
+              message: res.msg,
+              onClose: () => {
+                this.$router.push({
+                  path: "/main/index"
+                });
+              }
+            });
+          } else {
+            Toast({
+              duration: 2000,
+              message: res.msg
+            });
+          }
+        });
+      } else {
+        return;
+      }
     }
   }
 };
 </script>
 
-<style scoped>
-.btn-reg {
-  margin-top: 2.39rem;
-}
-.modify {
-  font-size: 0.24rem;
-  color: #d1141b;
-  letter-spacing: 0;
-  float: right;
-  margin-top: 0.32rem;
-}
-.modify span {
-  width: 0.24rem;
-  height: 0.24rem;
-  color: #fff;
-  background-color: #d1141b;
-  border-radius: 50%;
-  padding: 0.02rem 0.1rem;
-  margin-right: 0.11rem;
+<style scoped lang="less">
+@import "../../less/home.less";
+#login {
+  background: @whiteColor;
+  width: 100%;
+  max-width: 7.5rem;
+  overflow: hidden;
+  .modify{
+    display: block;
+    text-align: right;
+    color:@homeColor;
+    .pd();
+    .bran{
+      display: inline-block;
+      width: .3rem;
+      height: .3rem;
+      text-align: center;
+      line-height: .3rem;
+      border-radius: .3rem;
+      color: @whiteColor;
+      background: @homeColor;
+      .fontSize(.12rem);
+    }
+  }
+  .nav {
+    .marg(1rem);
+    li {
+      .mg(.4rem);
+    }
+  }
 }
 </style>
