@@ -23,32 +23,56 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: index
+      component: index,
+      meta:{
+        title:"引导页",
+        index:1
+      }
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login,
+      meta:{
+        title:"登录",
+        index:2
+      }
     },
     {
       path: '/regist',
       name: 'regist',
-      component: regist
+      component: regist,
+      meta:{
+        title:"注册",
+        index:3
+      }
     },
     {
       path: '/modify',
       name: 'modify',
-      component: modify
+      component: modify,
+      meta:{
+        title:"修改密码",
+        index:4
+      }
     },
     {
       path: '/setpass',
       name: 'setpass',
-      component: setpass
+      component: setpass,
+      meta:{
+        title:"重置密码",
+        index:5
+      }
     },
     {
       path: '/agree',
       name: 'agree',
-      component: agree
+      component: agree,
+      meta:{
+        title:"阅读",
+        index:6
+      }
     },
     {
       path: '/main',
