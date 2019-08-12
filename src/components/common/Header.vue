@@ -1,11 +1,20 @@
+<!--
+ * @ Author: minchao
+ * @ Create Time: 2019-05-24 11:30:48
+ * @ Modified by: minchao
+ * @ Modified time: 2019-08-12 11:04:46
+ * @ Description: 头部组件 header
+ -->
+
 <template>
-  <header class="header" v-if="isShowTop">
-    <div class="header-content" >
-      <h5>{{title}}</h5>
+  <header class="header">
+    <div class="header-content" v-if="isShow">
+      <p>{{title}}</p>
       <span class="back" @click="go" v-show="isShowReturnIcon">
-        <van-icon name="arrow-left"/>
+        <van-icon name="arrow-left" />
       </span>
     </div>
+    <div class="header-gap" v-if="false"></div>
   </header>
 </template>
 <script>
@@ -20,24 +29,28 @@ const store = createStore();
 export default {
   name: "top",
   props: [],
- data() {
+  data() {
     return {};
   },
-  computed: mapState({
-    isShowTop: state => state.top.isShowTop,
-    title: state => state.top.title,
-    isShowReturnIcon: state => state.top.isShowReturnIcon
-  }),
-  created() {
-     
+  props: {
+    isShow: {
+      type: Boolean,
+      default: false
+    },
+    isShowReturnIcon: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String,
+      default: ""
+    }
   },
-  mounted() {
-
-  },
+  created() {},
+  mounted() {},
   methods: {
     go() {
-      this.$router.go(-1)
-      
+      this.$router.go(-1);
     },
     generate() {
       bus.$emit("generate");
@@ -50,40 +63,24 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+@import "../../less/home.less";
 .header {
+  position: relative;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  background: @whiteColor;
   text-align: center;
-  font-size: 0.18rem;
-  height: 0.8rem;
-  h5 {
-    color: #030303;
-    font-weight: 500;
-  }
-  .header-content {
-    height: 0.8rem;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    line-height: 0.8rem;
-    background: #ffffff;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.55);
-    width: 100%;
-    z-index: 12;
-    // position:relative;
-    .back {
-      position: absolute;
-      width: 0.8rem;
-      height: 0.8rem;
-      top: 0;
-      left: 0;
-      
-      display: block;
-      i{
-        font-size: .3rem;
-        line-height: 0.8rem;
-      }
-    }
- 
+  color: @baseFontColor;
+  .boxShadow();
+  .fontSize();
+  .back {
+    position: absolute;
+    width: 0.6rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    top: 0;
+    left: 0.1rem;
+    color: @baseFontColor;
   }
 }
 </style>

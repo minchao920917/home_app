@@ -31,15 +31,16 @@ axios.interceptors.response.use(
   // 服务器状态码不是200的情况    
   error => {
     console.log(error);
-    if (error.response.status) {
+    if (error) {
+
       switch (error.response.status) {
-        // 401: 账号验证                
-        // 账号另处登录               
-        // 账号未登录                
+        // 401: 用户验证                  
+        // 用户另处登录               
+        // 用户未登录                
         case 401:
           Toast({
             duration: 2000,
-            message: error.response.data.msg,
+            message: "用户登录异常,请重新登录",
             onClose:()=>{
               location.href = `//${location.host}/#/login`
             }            
@@ -63,11 +64,12 @@ axios.interceptors.response.use(
         // 其他错误，直接抛出错误提示                
         default:
           Toast({
-            message: error.response.data.msg,
+            message: '求错误或服务器异常!',
           });
       }
       return Promise.reject(error.response);
     }
+    
   }
 );
 
