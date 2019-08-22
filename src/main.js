@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import axios from 'axios';
 import router from './router'
-
+import VConsole from 'vconsole'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import { createStore } from './store'
@@ -14,7 +14,7 @@ import {
   reqGet,
   reqPosFor
 } from './http/req';
-
+new VConsole()
 Vue.prototype.reqPos = reqPos;
 Vue.prototype.reqGet = reqGet;
 Vue.prototype.reqPosFor = reqPosFor;

@@ -8,8 +8,6 @@ Vue.use(Vuex)
 const state = {
   top:{
     isShowTop:false,//是否显示顶部
-    title: "首页",//顶部title
-    isShowReturnIcon: false,//是否显示顶部返回按钮
   },
 
 

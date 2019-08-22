@@ -2,19 +2,19 @@
  * @ Author: minchao
  * @ Create Time: 2019-05-24 11:30:48
  * @ Modified by: minchao
- * @ Modified time: 2019-08-22 18:00:41
+ * @ Modified time: 2019-08-23 16:49:51
  * @ Description: 头部组件 header
  -->
 
 <template>
-  <header class="header">
-    <div class="header-content" >
+  <header class="header" v-if="isShowTop">
+    <div class="header-content"  >
       <p>{{title}}</p>
       <span class="back" @click="go" v-show="isShowReturnIcon">
         <van-icon name="arrow-left" />
       </span>
     </div>
-    <div class="header-gap" v-if="false"></div>
+    <div class="header-gap"></div>
   </header>
 </template>
 <script>
@@ -33,19 +33,15 @@ export default {
     return {};
   },
   props: {
-    isShow: {
-      type: Boolean,
-      default: true
-    },
     isShowReturnIcon: {
       type: Boolean,
       default: true
-    },
-    title: {
-      type: String,
-      default: ""
     }
   },
+  computed: mapState({
+    isShowTop: state => state.top.isShowTop,
+    title: state => state.top.title,
+  }),
   created() {},
   mounted() {},
   methods: {
@@ -65,22 +61,21 @@ export default {
 <style scoped lang="less">
 @import "../../less/home.less";
 .header {
-  position: relative;
-  height: 0.6rem;
-  line-height: 0.6rem;
+  height: 1rem;
+  line-height: 1rem;
   background: @whiteColor;
   text-align: center;
   color: @baseFontColor;
   .boxShadow();
   .fontSize();
   .back {
-    position: absolute;
-    width: 0.6rem;
-    height: 0.6rem;
-    line-height: 0.6rem;
-    top: 0;
-    left: 0.1rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    line-height: 1rem;
     color: @baseFontColor;
+  }
+  .header-gap{
+    height: 1rem;
   }
 }
 </style>

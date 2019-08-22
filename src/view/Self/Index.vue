@@ -2,7 +2,7 @@
   <div id="self">
     <div class="user-info">
       <div class="left">
-        <img :src="head_url" alt />
+        <img :src="head_url != ''?head_url:default_head_url" alt />
       </div>
       <div class="right">
         <p class="nick-name">{{nick_name}}</p>
@@ -37,17 +37,16 @@ export default {
   name: "self",
   data() {
     return {
+      default_head_url:"../../../static/images/head_url.png",
       head_url: localStorage.getItem("head_url")||"",
       nick_name: localStorage.getItem("nick_name")||"",
       tel: localStorage.getItem("phone")||"",
       remarks: localStorage.getItem("remarks")||""
     };
   },
-  computed: mapState({
-    // wateritem: state => state.wateritem,
-  }),
   created() {
-    store.state.top.isShowTop = true;
+    store.state.top.isShowTop = false;
+    store.state.top.title = "我的";
   }
 };
 </script>
@@ -61,6 +60,10 @@ export default {
     .flexbox();
     .pd(0rem, 0.6rem);
     .left {
+       width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 1.5rem;
+        background: @whiteColor;
       img {
         width: 1.5rem;
         height: 1.5rem;

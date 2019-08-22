@@ -2,7 +2,7 @@
  * @ Author: minchao
  * @ Create Time: 2019-06-10 16:51:47
  * @ Modified by: minchao
- * @ Modified time: 2019-08-22 16:53:32
+ * @ Modified time: 2019-08-23 11:44:40
  * @ Description: 登录页面
  -->
 <template>
@@ -46,6 +46,9 @@
 
 <script>
 import Vue from "vue";
+import { createStore } from "../../store";
+import { mapState } from "vuex";
+const store = createStore();
 import Url from "../../utils/url";
 import req from "../../http/req";
 import { Loading, Toast, Field } from "vant";
@@ -64,6 +67,9 @@ export default {
       password: "",
       msg: "登陆"
     };
+  },
+    created() {
+    store.state.top.isShowTop = false;
   },
   components: {
     top,

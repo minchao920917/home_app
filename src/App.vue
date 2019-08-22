@@ -12,6 +12,9 @@ export default {
       transitionName: ""
     };
   },
+  created(){
+     this.isLogin();
+  },
   watch: {
     //使用watch 监听$router的变化
 
@@ -23,6 +26,17 @@ export default {
         this.transitionName = "slide-left";
       } else {
         this.transitionName = "slide-right";
+      }
+     
+    }
+  },
+  methods: {
+    isLogin() {
+      if ((localStorage.getItem("token") || "") == "") {
+        Toast("您尚未登录,请登录");
+        this.$router.push({
+          path: "/login"
+        });
       }
     }
   }

@@ -1,12 +1,13 @@
 <template>
   <div id="home">
+    <top></top>
     <section class="contain">
       <transition :name="transitionName">
         <router-view></router-view>
       </transition>
     </section>
     <div class="bottom-gap"></div>
-    <van-tabbar route v-model="active">
+    <van-tabbar route v-model="active" class="bottom">
       <van-tabbar-item to="/main/index" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/main/news" icon="chat-o">聊天</van-tabbar-item>
       <van-tabbar-item to="/main/letter" icon="search">提问</van-tabbar-item>
@@ -19,6 +20,7 @@
 import { createStore } from "../../store";
 import { mapState } from "vuex";
 import { Toast } from "vant";
+import top from "../../components/common/Header"
 const store = createStore();
 export default {
   name: "Home",
@@ -31,7 +33,9 @@ export default {
   computed: mapState({}),
   created() {},
   mounted() {},
-  components: {},
+  components: {
+    top
+  },
   watch: {
     //使用watch 监听$router的变化
     $route(to, from) {
@@ -97,6 +101,9 @@ export default {
 }
 .bottom-gap{
   height: 100px;
+}
+.bottom{
+  bottom: .5rem;
 }
 .van-tabbar-item--active{
   color:@homeColor;
