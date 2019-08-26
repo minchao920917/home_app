@@ -1,28 +1,10 @@
 <template>
   <div class="member">
     <van-cell-group>
-      <van-field v-model="title" label="标题" placeholder="请输入标题" />
+      <van-field v-model="username" label="姓名" placeholder="请输入姓名" />
+      <van-field v-model="phone" label="手机号" placeholder="请输入手机号" />
+      <van-field v-model="nickname" label="昵称" placeholder="请输入昵称" />
     </van-cell-group>
-    <van-cell-group>
-      <van-field
-        v-model="content"
-        label="内容"
-        type="textarea"
-        placeholder="请输入内容"
-        rows="1"
-        autosize
-      />
-    </van-cell-group>
-    <van-cell-group>
-      <van-switch-cell
-        v-model="authority"
-        @change="authorityClick"
-        :title="authorityText"
-        active-color="#09aeaf"
-        inactive-color="#fff"
-      />
-    </van-cell-group>
-
     <button-component
       class="index-btn"
       :isactivited="true"
@@ -56,15 +38,14 @@ import buttonComponent from "../../../components/common/Button";
 export default {
   data() {
     return {
-      title: "",
-      content: "",
-      authority: false,
-      authorityText: "一般"
+      username: "",
+      phone: "",
+      nickname: ""
     };
   },
   mounted() {
     this.$store.state.top.isShowTop = true;
-    this.$store.state.top.title = "发布通知";
+    this.$store.state.top.title = "新增成员";
     this.$store.state.top.rightText = "";
   },
   created() {},
@@ -83,11 +64,10 @@ export default {
           mask: true,
           message: "提交中..."
         });
-        this.reqPos(Url.addNotifies, {
-          authority: this.authority ? 1 : 0,
-          title: this.title,
-          content: this.content,
-          person_id: localStorage.getItem("accountId"),
+        this.reqPos(Url.createUser, {
+          user_name: this.username,
+          phone: this.phone,
+          nick_name: this.nickname,
           home_id: localStorage.getItem("home_id")
         }).then(res => {
           console.log(res);
@@ -99,7 +79,7 @@ export default {
               onClose: () => {}
             });
             this.$router.push({
-              path: "/self/notice"
+              path: "/self/member"
             });
           } else {
             Toast({
@@ -113,21 +93,23 @@ export default {
       }
     },
     checked() {
-      if (this.title == "") {
-        Toast("标题不能为空");
+      if (this.username == "") {
+        Toast("姓名不能为空");
         return false;
       }
-
-      if (this.content == "") {
-        Toast("内容不能为空");
+      if (!Rules.nameReg.test(this.username)) {
+        Toast("姓名格式不正确");
+        return false;
+      }
+      if (this.phone == "") {
+        Toast("电话不能为空");
+        return false;
+      }
+      if (!Rules.phoneReg.test(this.phone)) {
+        Toast("电话格式不正确");
         return false;
       }
       return true;
-    },
-    authorityClick(checked) {
-      checked ? (this.authority = true) : this.authority == false;
-      checked ? (this.authorityText = "重要") : (this.authorityText = "一般");
-      console.log(this.authority);
     }
   }
 };

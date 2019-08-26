@@ -2,18 +2,21 @@
  * @ Author: minchao
  * @ Create Time: 2019-05-24 11:30:48
  * @ Modified by: minchao
- * @ Modified time: 2019-08-23 16:49:51
+ * @ Modified time: 2019-08-26 18:47:54
  * @ Description: 头部组件 header
  -->
 
 <template>
   <header class="header" v-if="isShowTop">
-    <div class="header-content"  >
-      <p>{{title}}</p>
-      <span class="back" @click="go" v-show="isShowReturnIcon">
-        <van-icon name="arrow-left" />
-      </span>
-    </div>
+    <van-nav-bar
+      :title="title"
+      :fixed="true"
+      left-text
+      :right-text="rightText"
+      left-arrow
+      @click-left="go"
+      @click-right="onClickRight"
+    />
     <div class="header-gap"></div>
   </header>
 </template>
@@ -21,9 +24,10 @@
 import Vue from "vue";
 import { mapState } from "vuex";
 import { createStore } from "../../store";
-import { Icon } from "vant";
+import { Icon, NavBar } from "vant";
 import bus from "../../utils/bus";
 Vue.use(Icon);
+Vue.use(NavBar);
 const store = createStore();
 
 export default {
@@ -41,6 +45,7 @@ export default {
   computed: mapState({
     isShowTop: state => state.top.isShowTop,
     title: state => state.top.title,
+    rightText: state => state.top.rightText,
   }),
   created() {},
   mounted() {},
@@ -51,8 +56,18 @@ export default {
     generate() {
       bus.$emit("generate");
     },
-    cancel() {
-      store.dispatch("showCancelToast", true);
+    onClickRight() {
+     if(this.$route.path == "/self/notice"){
+       this.$router.push({
+         path:"/self/noticeAdd"
+       })
+     }
+     if(this.$route.path == "/self/member"){
+       this.$router.push({
+         path:"/self/memberAdd"
+       })
+     }
+     
     }
   }
 };
@@ -61,21 +76,28 @@ export default {
 <style scoped lang="less">
 @import "../../less/home.less";
 .header {
-  height: 1rem;
-  line-height: 1rem;
   background: @whiteColor;
   text-align: center;
   color: @baseFontColor;
   .boxShadow();
   .fontSize();
-  .back {
-    width: 0.8rem;
-    height: 0.8rem;
-    line-height: 1rem;
-    color: @baseFontColor;
+  .header-content {
+    display: flex;
+
+    .back {
+      width: 0.8rem;
+      height: 0.8rem;
+      line-height: 1rem;
+      color: @baseFontColor;
+      flex-grow: 1;
+    }
+    p {
+      flex-grow: 11;
+      padding-right: 0.8rem;
+    }
   }
-  .header-gap{
-    height: 1rem;
+  .header-gap {
+    height: 46px;
   }
 }
 </style>

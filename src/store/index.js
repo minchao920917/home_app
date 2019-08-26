@@ -8,6 +8,8 @@ Vue.use(Vuex)
 const state = {
   top:{
     isShowTop:false,//是否显示顶部
+    title:"",
+    rightText:""
   },
 
 

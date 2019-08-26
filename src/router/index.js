@@ -13,6 +13,7 @@ import letterIndex from '@/view/Letter/Index' //提问
 import newsIndex from '@/view/News/Index' //消息
 import selfIndex from '@/view/self/Index' //我的
 import member from '@/view/self/Member/member'  //成员管理
+import memberAdd from '@/view/self/Member/memberAdd'  //成员添加
 import memberEdit from '@/view/self/Member/memberEdit' //成员编辑
 import notice from '@/view/self/Notice/notice' //通知管理
 import noticeAdd from '@/view/self/Notice/noticeAdd' //添加通知
@@ -118,6 +119,14 @@ export default new Router({
           meta:{
             title:"成员管理",
             index:11
+          }
+        },
+        {
+          path: '/self/memberAdd',
+          component: memberAdd,
+          meta:{
+            title:"成员添加",
+            index:12
           }
         },
         {

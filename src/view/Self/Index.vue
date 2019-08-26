@@ -5,7 +5,7 @@
         <img :src="head_url != ''?head_url:default_head_url" alt />
       </div>
       <div class="right">
-        <p class="nick-name">{{nick_name}}</p>
+        <p class="nick-name">{{nick_name}} <span>{{role == 1?"(家主)":"成员"}}</span></p>
         <p class="tel">{{tel}}</p>
       </div>
     </div>
@@ -41,6 +41,7 @@ export default {
       head_url: localStorage.getItem("head_url")||"",
       nick_name: localStorage.getItem("nick_name")||"",
       tel: localStorage.getItem("phone")||"",
+      role: localStorage.getItem("role")||"",
       remarks: localStorage.getItem("remarks")||""
     };
   },

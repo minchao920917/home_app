@@ -2,7 +2,7 @@
   <div class="home-btn">
     <div
       class="btn"
-      :class="{'btn-active':isactivited}"
+      :class="{'btn-active':isactivited,'border-radius':isRadius}"
       :style="{'width':width,'height':height,'line-height':lineHeight}"
       @click="send"
     >{{btntext}}</div>
@@ -35,6 +35,10 @@ export default {
     isactivited: {
       type: Boolean,
       default: false
+    },
+    isRadius: {
+      type: Boolean,
+      default: true
     }
   },
   mounted() {},
@@ -57,8 +61,10 @@ export default {
     text-align: center;
     line-height: 0.44rem;
     box-shadow: -2px 2px 6px 0 rgba(217, 217, 217, 0.48);
-    border-radius: 0.45rem;
     color: @homeColor;
+  }
+  .border-radius {
+    border-radius: 0.45rem;
   }
   .btn-active {
     background: @homeColor;

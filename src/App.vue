@@ -5,6 +5,10 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Toast } from "vant";
+
+Vue.use(Toast);
 export default {
   name: "App",
   data() {
@@ -13,7 +17,7 @@ export default {
     };
   },
   created(){
-     this.isLogin();
+    //  this.isLogin();
   },
   watch: {
     //使用watch 监听$router的变化

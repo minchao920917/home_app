@@ -7,11 +7,11 @@
       </transition>
     </section>
     <div class="bottom-gap"></div>
-    <van-tabbar route v-model="active" class="bottom">
-      <van-tabbar-item to="/main/index" icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item to="/main/news" icon="chat-o">聊天</van-tabbar-item>
-      <van-tabbar-item to="/main/letter" icon="search">提问</van-tabbar-item>
-      <van-tabbar-item to="/main/self" icon="edit">我的</van-tabbar-item>
+    <van-tabbar v-model="active">
+      <van-tabbar-item name="home" to="/main/index" icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item name="news" to="/main/news" icon="chat-o">聊天</van-tabbar-item>
+      <van-tabbar-item name="letter" to="/main/letter" icon="search">提问</van-tabbar-item>
+      <van-tabbar-item name="self" to="/main/self" icon="edit">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -20,14 +20,14 @@
 import { createStore } from "../../store";
 import { mapState } from "vuex";
 import { Toast } from "vant";
-import top from "../../components/common/Header"
+import top from "../../components/common/Header";
 const store = createStore();
 export default {
   name: "Home",
   data() {
     return {
       transitionName: "",
-      active: 0
+      active: "home"
     };
   },
   computed: mapState({}),
@@ -99,13 +99,26 @@ export default {
   background: #eeeeee;
   width: 100%;
 }
-.bottom-gap{
+.bottom-gap {
   height: 100px;
 }
-.bottom{
-  bottom: .5rem;
+// .bottom{
+//   bottom: .5rem;
+// }
+.van-tabbar-item--active {
+  color: @homeColor;
 }
-.van-tabbar-item--active{
-  color:@homeColor;
+.van-nav-bar__text {
+  color: @homeColor;
+}
+.van-nav-bar .van-icon {
+  color: @homeColor;
+}
+.van-nav-bar__title {
+  .fontSize(13px);
+  color: @homeColor;
+}
+.van-nav-bar__text{
+  font-weight: bold;
 }
 </style>
