@@ -14,7 +14,7 @@ import {
   reqGet,
   reqPosFor
 } from './http/req';
-new VConsole()
+// new VConsole()
 Vue.prototype.reqPos = reqPos;
 Vue.prototype.reqGet = reqGet;
 Vue.prototype.reqPosFor = reqPosFor;

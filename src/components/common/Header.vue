@@ -2,7 +2,7 @@
  * @ Author: minchao
  * @ Create Time: 2019-05-24 11:30:48
  * @ Modified by: minchao
- * @ Modified time: 2019-08-26 18:47:54
+ * @ Modified time: 2019-08-27 16:21:53
  * @ Description: 头部组件 header
  -->
 
@@ -65,6 +65,11 @@ export default {
      if(this.$route.path == "/self/member"){
        this.$router.push({
          path:"/self/memberAdd"
+       })
+     }
+     if(this.$route.path == "/self/account"){
+       this.$router.push({
+         path:"/self/accountAdd"
        })
      }
      

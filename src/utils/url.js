@@ -27,6 +27,10 @@ export default {
     getNotifyById:DomainAll + "/getNotifyById",//获取通知信息
 
 
+    getFinacialList:DomainAll + "/getFinacialList",//获取账单列表
+    addFinacial:DomainAll + "/addFinacial",//添加账单
+
+
     
 
     

@@ -17,6 +17,11 @@ import memberAdd from '@/view/self/Member/memberAdd'  //成员添加
 import memberEdit from '@/view/self/Member/memberEdit' //成员编辑
 import notice from '@/view/self/Notice/notice' //通知管理
 import noticeAdd from '@/view/self/Notice/noticeAdd' //添加通知
+import noticeEdit from '@/view/self/Notice/noticeEdit' //修改通知
+import account from '@/view/self/Account/account' //账单管理管理
+import accountAdd from '@/view/self/Account/AccountAdd' //添加账单
+
+
 
 Vue.use(Router)
 
@@ -150,6 +155,30 @@ export default new Router({
           component: noticeAdd,
           meta:{
             title:"添加通知",
+            index:14
+          }
+        },
+        {
+          path: '/self/noticeEdit',
+          component: noticeEdit,
+          meta:{
+            title:"修改通知",
+            index:14
+          }
+        },
+        {
+          path: '/self/account',
+          component: account,
+          meta:{
+            title:"账单管理",
+            index:14
+          }
+        },
+        {
+          path: '/self/accountAdd',
+          component: accountAdd,
+          meta:{
+            title:"添加账单",
             index:14
           }
         },

@@ -13,7 +13,7 @@
     <van-cell-group class="cell-group first" title>
       <van-cell title="成员管理" is-link to="/self/member" />
       <van-cell title="通知管理" is-link to="/self/notice" />
-      <van-cell title="记账管理" is-link to="index" />
+      <van-cell title="记账管理" is-link to="/self/account" />
     </van-cell-group>
     <van-cell-group class="cell-group" title>
       <van-cell title="地址管理" is-link to="index" />
