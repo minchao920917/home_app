@@ -2,7 +2,7 @@
  * @ Author: minchao
  * @ Create Time: 2019-06-20 11:13:25
  * @ Modified by: minchao
- * @ Modified time: 2019-08-26 19:45:24
+ * @ Modified time: 2019-08-27 10:57:17
  * @ Description: 通知管理 notice
  -->
 
@@ -19,7 +19,12 @@
           :offset="300"
         >
           <div class="line-bottom" v-for="(notice,index) in mylist" :key="index">
-            <van-swipe-cell :on-close="onClose" :name="notice.person_id" :data-index="index" :data-id="notice.id">
+            <van-swipe-cell
+              :on-close="onClose"
+              :name="index"
+              :data-index="index"
+              :data-id="notice.id"
+            >
               <template slot="left">
                 <van-button square type="primary" text="修改" />
               </template>
@@ -41,14 +46,8 @@
           :offset="300"
         >
           <div class="line-bottom" v-for="(notice,index) in otherlist" :key="index">
-            <van-swipe-cell :on-close="onClose" :name="notice.id ">
-              <template slot="left">
-                <van-button square type="primary" text="修改" />
-              </template>
+            <van-swipe-cell :on-close="onClose" :name="index ">
               <van-cell :border="false" :title="getTitle(notice)" :value="formatPassTime(notice)" />
-              <template slot="right" :name="notice.person_id">
-                <van-button square type="danger" text="删除"  />
-              </template>
             </van-swipe-cell>
           </div>
         </van-list>
@@ -110,7 +109,8 @@ export default {
     },
     formatPassTime() {
       return function(notice) {
-        var startTime = Date.parse(new Date(notice.create_time));
+        //有更新时间用更新时间，没有用创建时间
+        var startTime = Date.parse(new Date(notice.update_time==""?notice.create_time:notice.update_time));
         var currentTime = Date.parse(new Date()),
           time = currentTime - startTime,
           day = parseInt(time / (1000 * 60 * 60 * 24)),
@@ -157,7 +157,7 @@ export default {
     onLoadOtherList() {
       this.initOtherList(this.otherPageNum++, this.id);
     },
-    initOtherList(pageNum,id) {
+    initOtherList(pageNum, id) {
       this.reqPos(Url.getOtherNotifyList, {
         pageSize: this.pageSize,
         pageNum: pageNum,
@@ -181,41 +181,44 @@ export default {
       });
     },
     // clickPosition 表示关闭时点击的位置
-    onClose(clickPosition, instance,detail) {
+    onClose(clickPosition, instance, event) {
       switch (clickPosition) {
         case "left":
-          this.edit(instance, detail);
+          this.edit(instance, event);
           break;
         case "cell":
         case "outside":
           instance.close();
           break;
         case "right":
-          this.delete(instance,detail);
+          this.delete(instance, event);
           break;
       }
     },
     edit(instance, event) {
+      var index = event.name;
+      var noticeIndex = this.mylist[index];
       if (localStorage.getItem("role") == 1) {
         this.$router.push({
           path: "/self/noticeEdit",
           query: {
-            id: event.name
+            id: noticeIndex.id
           }
         });
       } else {
         Toast("您不是家主，没权限添加家庭成员!");
       }
     },
-    delete(instance, event,detail) {
-      if (localStorage.getItem("accountId") == event.name) {
+    delete(instance, event) {
+      var index = event.name;
+      var noticeIndex = this.mylist[index];
+      if (localStorage.getItem("accountId") == noticeIndex.person_id) {
         Dialog.confirm({
           message: "确定删除吗？"
         })
           .then(() => {
             instance.close();
-   
-            this.remove(event.name);
+            this.remove(noticeIndex);
           })
           .catch(() => {
             // on cancel
@@ -224,14 +227,15 @@ export default {
         Toast("你不能修改別人发布的通知");
       }
     },
-    remove(id) {
+    remove(noticeIndex) {
       const loadingToast = Toast.loading({
         duration: 0,
         mask: true,
         message: "提交中..."
       });
       this.reqPos(Url.removeNotify, {
-        id: id
+        id: noticeIndex.id,
+        accountId: noticeIndex.person_id
       }).then(res => {
         loadingToast.clear();
         if (res.status === "1") {
@@ -241,7 +245,7 @@ export default {
             onClose: () => {}
           });
           this.mylist = this.mylist.filter(function(item) {
-            return item.id != id;
+            return item.id != noticeIndex.id;
           });
         } else {
           Toast({
