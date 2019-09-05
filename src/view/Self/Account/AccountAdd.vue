@@ -31,7 +31,6 @@
       :btntext="'确认添加'"
       @send="send"
     ></button-component>
-
   </div>
 </template>
 
