@@ -2,7 +2,7 @@
  * @ Author: minchao
  * @ Create Time: 2019-06-20 11:13:25
  * @ Modified by: minchao
- * @ Modified time: 2019-09-05 16:22:32
+ * @ Modified time: 2019-09-05 16:33:36
  * @ Description: 账单管理 account
  -->
 
@@ -20,7 +20,7 @@
         <p class>收入 ￥ {{income| outputmoney}}</p>
       </div>
     </div>
-    <div class="account-list">
+    <div class="account-list" v-if="list.length != 0">
       <div class="line-bottom" v-for="(account,index) in list" :key="index">
         <van-swipe-cell :on-close="onClose" :name="account.id">
           <template slot="left">
@@ -36,7 +36,9 @@
           </template>
         </van-swipe-cell>
       </div>
+      
     </div>
+    <p class="none" v-if="list.length == 0">{{"没有更多账单"}}</p>
     <van-popup v-model="show" position="bottom">
       <van-datetime-picker
         v-model="currentDate"
@@ -198,6 +200,10 @@ export default {
       }
     }
   }
+}
+.none{
+  text-align: center;
+  margin-top:2rem;
 }
 </style>
 
