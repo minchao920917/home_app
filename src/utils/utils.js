@@ -1,5 +1,5 @@
 /**
- * Author: minchao@chinaubi.com
+ * Author: minchao
  * Date: 2019.05.24
  * Version: 1.3.3
  * Description: 公共方法合集
